@@ -20,7 +20,7 @@ public class Klant {
     public Klant() {
 
     }
-
+//pff
     public int getId() {
         return id;
     }
