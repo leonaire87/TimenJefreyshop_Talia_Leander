@@ -1,4 +1,7 @@
 package be.ehb.demo.model;
 
-public interface DierenproductenDAO {
+import org.springframework.data.repository.CrudRepository;
+
+public interface DierenproductenDAO extends CrudRepository<Dierenproducten, Integer> {
+
 }
