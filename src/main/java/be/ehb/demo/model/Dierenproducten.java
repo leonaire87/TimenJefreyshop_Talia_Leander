@@ -14,7 +14,16 @@ public class Dierenproducten {
     public int id;
 
     public String productNaam;
-    public String productOmschrijving;
+    public String productOmschrijving, imgurl;
+
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
+    }
+
     public BigDecimal prijs;
 
 
@@ -28,6 +37,7 @@ public class Dierenproducten {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public String getProductNaam() {
         return productNaam;
