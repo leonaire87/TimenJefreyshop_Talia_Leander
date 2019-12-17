@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-        xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{~/main.css}">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,21 +18,12 @@
     <!-- ook terug te vinden op datatables.net-->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 </head>
+
 <body>
-<nav th:replace="~{menu::nav_menu(index)}"></nav>
-    <h1>Tim en Jefrey's shop</h1>
+<nav th:replace="~{menu::nav_menu(orderbevestiging)}"></nav>
 
-<div th:each="Dierenproducten:${all}">
-
-    <p>Productnaam</p>
-
-    <p th:text="${Dierenproducten.productNaam}"></p>
-    <img th:src="${Dierenproducten.getImgurl()}">
-    <p th:text="${Dierenproducten.productOmschrijving}"></p>
-    <p th:text="${Dierenproducten.prijs}"></p>
-    <p><a th:href="'index/'+${Dierenproducten.id}">add</a> </p>
-
-</div>
+<h1>Uw bestelling is geplaatst</h1>
+<p>Er werd een e-mail naar u verzonden met uw bestelling.</p>
 
 </body>
 </html>

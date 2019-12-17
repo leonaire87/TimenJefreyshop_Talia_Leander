@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Klant {
@@ -11,11 +13,20 @@ public class Klant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
+    @NotBlank
     public String email;
+
+    @NotBlank
     public String klantNaam;
+
+    @NotBlank
     public String adres;
+
+    @NotBlank
     public String woonplaats;
-    public int postcode;
+
+    @NotNull
+    public long postcode;
 
     public Klant() {
 
@@ -61,11 +72,11 @@ public class Klant {
         this.woonplaats = woonplaats;
     }
 
-    public int getPostcode() {
+    public long getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(long postcode) {
         this.postcode = postcode;
     }
 }

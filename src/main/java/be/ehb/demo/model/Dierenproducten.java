@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -11,20 +13,19 @@ public class Dierenproducten {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private int id;
 
-    public String productNaam;
-    public String productOmschrijving, imgurl;
+    @NotBlank
+    private String dierenSoort;
 
-    public String getImgurl() {
-        return imgurl;
-    }
+    @NotBlank
+    private String productNaam;
 
-    public void setImgurl(String imgurl) {
-        this.imgurl = imgurl;
-    }
+    @NotBlank
+    private String productOmschrijving, imgurl;
 
-    public BigDecimal prijs;
+    @NotNull
+    private BigDecimal prijs;
 
 
     public Dierenproducten() {
@@ -38,6 +39,13 @@ public class Dierenproducten {
         this.id = id;
     }
 
+    public String getDierenSoort() {
+        return dierenSoort;
+    }
+
+    public void setDierenSoort(String dierenSoort) {
+        this.dierenSoort = dierenSoort;
+    }
 
     public String getProductNaam() {
         return productNaam;
@@ -53,6 +61,14 @@ public class Dierenproducten {
 
     public void setProductOmschrijving(String productOmschrijving) {
         this.productOmschrijving = productOmschrijving;
+    }
+
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
     }
 
     public BigDecimal getPrijs() {
