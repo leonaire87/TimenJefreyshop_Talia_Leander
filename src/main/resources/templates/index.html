@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
-    <title>Tim&Jefry</title>
+    <title>Tim&Jefrey</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!--jqueries op datatables.net -->
@@ -22,15 +22,18 @@
 <nav th:replace="~{menu::nav_menu(index)}"></nav>
     <h1>Tim en Jefrey's shop</h1>
 
-<div th:each="Dierenproducten:${all}">
+<div th:each="dierenproduct:${all}">
 
     <p>Productnaam</p>
 
-    <p th:text="${Dierenproducten.productNaam}"></p>
-    <img th:src="${Dierenproducten.getImgurl()}">
-    <p th:text="${Dierenproducten.productOmschrijving}"></p>
-    <p th:text="${Dierenproducten.prijs}"></p>
-    <p><a th:href="'index/'+${Dierenproducten.id}">add</a> </p>
+    <p th:text="${dierenproduct.productNaam}"></p>
+    <img th:src="${dierenproduct.imgurl}">
+    <p th:text="${dierenproduct.productOmschrijving}"></p>
+    <p th:text="${dierenproduct.prijs}"></p>
+    <p>
+        <a th:href="@{~/winkelwagen/add/{id} (id=*{dierenproduct.id})}">
+            add</a>
+    </p>
 
 </div>
 

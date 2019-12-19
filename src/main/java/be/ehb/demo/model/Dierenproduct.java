@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-public class Dierenproducten {
+public class Dierenproduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +27,15 @@ public class Dierenproducten {
     @NotNull
     private BigDecimal prijs;
 
+    public Dierenproduct() {
+    }
 
-    public Dierenproducten() {
+    public Dierenproduct(@NotBlank String dierenSoort, @NotBlank String productNaam, @NotBlank String productOmschrijving, @NotBlank String imgurl, @NotNull BigDecimal prijs) {
+        this.dierenSoort = dierenSoort;
+        this.productNaam = productNaam;
+        this.productOmschrijving = productOmschrijving;
+        this.imgurl = imgurl;
+        this.prijs = prijs;
     }
 
     public int getId() {
@@ -77,5 +84,17 @@ public class Dierenproducten {
 
     public void setPrijs(BigDecimal prijs) {
         this.prijs = prijs;
+    }
+
+    @Override
+    public String toString() {
+        return "Dierenproducten{" +
+                "id=" + id +
+                ", dierenSoort='" + dierenSoort + '\'' +
+                ", productNaam='" + productNaam + '\'' +
+                ", productOmschrijving='" + productOmschrijving + '\'' +
+                ", imgurl='" + imgurl + '\'' +
+                ", prijs=" + prijs +
+                '}';
     }
 }

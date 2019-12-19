@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
-    <title>Tim&Jefry</title>
+    <title>Tim&Jefrey - Winkelwagen</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!--jqueries op datatables.net -->
@@ -25,28 +25,28 @@
 <h2>Bestelling</h2>
 <table>
     <thead>
-    <div th:object="${winkelwagen}">
+    <div>
         <tr>
             <th>Productnaam</th>
-            <th>Aantal</th>
             <th>Prijs</th>
+            <th>Aantal</th>
 
         </tr>
-    <tr>
-        <td th:text="*{productNaam}"></td>
-        <td></td>
-        <td th:text="*{prijs}"></td>
-
-    </tr>
-    </div>
+        <tbody th:each="dierenproduct:${toonWinkelwagen}">
+            <tr>
+                <td th:text="*{dierenproduct.productNaam}"></td>
+                <td th:text="*{dierenproduct.prijs}"></td>
+                <td></td>
+            </tr>
+</tbody>
     </thead>
 </table>
 
 <h2>Bestelformulier</h2>
 
 <div>
-    <form th:action="@{~/winkelwagen}" method="post" th:object="${nKlant}">
-        <label >Naam</label>
+   <form th:action="@{~/winkelwagen/klant}" method="post" th:object="${nKlant}">
+        <label for="klantNaam" >Naam</label>
         <input type="text" th:field="*{klantNaam}" id="klantNaam">
         <span th:if="${#fields.hasErrors('klantNaam')}" th:errors="*{klantNaam}" class="error"></span>
 
