@@ -27,21 +27,24 @@
 </head>
 <body>
 <nav th:replace="~{menu::nav_menu(index)}"></nav>
+<div class="section">
+    <div class="container">
+        <h1>Tim en Jefrey's shop</h1>
 
-<h1>Tim en Jefrey's shop</h1>
 
+        <div th:each="dierenproduct:${all}" class="dierenproduct">
 
-<div th:each="dierenproduct:${all}" class="dierenproduct">
-
-    <p th:text="${dierenproduct.productNaam}"></p>
-    <img th:src="${dierenproduct.imgurl}">
-    <p th:text="${dierenproduct.productOmschrijving}"></p>
-    <p th:text="${dierenproduct.prijs}"></p>
-    <p>
-        <a th:href="@{~/winkelwagen/add/{id} (id=*{dierenproduct.id})}">
-            <img src="https://i.pinimg.com/originals/db/9f/06/db9f063dca6904b2c01cb33571cb65b1.png"></a>
-    </p>
-
+            <p th:text="${dierenproduct.productNaam}"></p>
+            <img class=afbeeldingproducten th:src="${dierenproduct.imgurl}">
+            <p th:text="${dierenproduct.productOmschrijving}"></p>
+            <p th:text="|€${dierenproduct.prijs}|"></p>
+            <p>
+                <a th:href="@{~/winkelwagen/add/{id} (id=*{dierenproduct.id})}">
+                    <img class="cart"
+                         src="https://i.pinimg.com/originals/db/9f/06/db9f063dca6904b2c01cb33571cb65b1.png"></a>
+            </p>
+        </div>
+    </div>
 </div>
 
 </body>

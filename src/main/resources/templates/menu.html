@@ -26,37 +26,45 @@
 </head>
 
 
-
 <nav th:fragment="nav_menu(page)" class="nav_menu">
+    <div class="section">
+        <div class="container">
+            <div class="nav_menu___navigatie">
 
-    <div class="nav_menu___navigatie">
-        <ul>
-            <li class="nav_menu___navigatie_titel"><a th:href="@{~/index}" th:class="${(page=='index')?'active':''}">Tim
-                & Jefrey</a></li>
-            <li class="nav_menu___navigatie_knop"><a th:href="@{~/index}"
-                                                     th:class="${(page=='index')?'active':''}">Home</a></li>
-            <li class="nav_menu___navigatie_knop"><a th:href="@{~/about}" th:class="${(page=='about')?'active':''}">Over
-                ons</a></li>
-            <li class="nav_menu___navigatie_knop"><a th:href="@{~/winkelwagen}"
-                                                     th:class="${(page=='winkelwagen')?'active':''}">
-                <img src="https://i.pinimg.com/originals/db/9f/06/db9f063dca6904b2c01cb33571cb65b1.png"></a></li>
-        </ul>
+                <ul class="nav_menu___navigatie_main">
+                    <li class="nav_menu___navigatie_titel"><a th:href="@{~/index}"
+                                                              th:class="${(page=='index')?'active':''}">Tim
+                        & Jefrey</a></li>
+                    <li class="nav_menu___navigatie_knop"><a th:href="@{~/index}"
+                                                             th:class="${(page=='index')?'active':''}">Home</a></li>
+                    <li class="nav_menu___navigatie_knop"><a th:href="@{~/about}"
+                                                             th:class="${(page=='about')?'active':''}">Over
+                        ons</a></li>
+                    <li class="nav_menu___navigatie_knop">
+                        <a th:href="@{~/winkelwagen}" th:class="${(page=='winkelwagen')?'active':''}">
+
+                            <img src="https://i.pinimg.com/originals/db/9f/06/db9f063dca6904b2c01cb33571cb65b1.png">
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav_menu___filters">
+                <ul>
+                    <li class="nav_menu___filters_knop"><a th:href="@{~/index/Katten}"
+                                                           th:class="${(page=='index')?'active':''}">Katten</a></li>
+                    <li class="nav_menu___filters_knop"><a th:href="@{~/index/Honden}"
+                                                           th:class="${(page=='index')?'active':''}">Honden</a></li>
+                    <li class="nav_menu___filters_knop"><a th:href="@{~/index/Hagedissen}"
+                                                           th:class="${(page=='index')?'active':''}">Hagedissen</a></li>
+                    <li class="nav_menu___filters_knop"><a th:href="@{~/index/Schildpadden}"
+                                                           th:class="${(page=='index')?'active':''}">Schildpadden</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
     </div>
-    <div class="nav_menu___filters">
-        <ul>
-            <li class="nav_menu___filters_knop"><a th:href="@{~/index/Katten}"
-                                                   th:class="${(page=='index')?'active':''}">Katten</a></li>
-            <li class="nav_menu___filters_knop"><a th:href="@{~/index/Honden}"
-                                                   th:class="${(page=='index')?'active':''}">Honden</a></li>
-            <li class="nav_menu___filters_knop"><a th:href="@{~/index/Hagedissen}"
-                                                   th:class="${(page=='index')?'active':''}">Hagedissen</a></li>
-            <li class="nav_menu___filters_knop"><a th:href="@{~/index/Schildpadden}"
-                                                   th:class="${(page=='index')?'active':''}">Schildpadden</a>
-            </li>
-        </ul>
-    </div>
-
-
 </nav>
 
 

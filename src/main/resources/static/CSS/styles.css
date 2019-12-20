@@ -1,3 +1,72 @@
-body {
-    margin: 20px
+
+body{
+    background-color: white !important;
+
 }
+.section{
+    margin:2rem 0;
+}
+.container{
+    width: 80%;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+.nav_menu{
+    width: 100%;
+    padding: 10px;
+    margin: 20px;
+    top: 0;
+    left: 0;
+    background-color: darkseagreen !important;
+}
+.nav_menu ul{
+    list-style: none;
+    padding: 0;
+
+
+}
+.nav_menu ul li {
+    display: inline-block;
+}
+.nav_menu ul li a{
+
+    padding: 5px ;
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+}
+.nav_menu___navigatie ul img{ height: 35px;
+    width: auto;
+
+}
+a{
+    text-decoration: none;
+    color: black!important;
+}
+
+.cart{
+    width: 44px;
+    height: auto;
+}
+
+.afbeeldingproducten{
+    width: 250px;
+    height: 250px;
+
+}
+.dierenproduct{
+    margin: 10px;
+    padding: 10px;
+    border-style: solid !important;
+    border-color:  black !important;
+    border: 2px;
+    display:inline-block;
+    font-weight: bold;
+    width: 30%;
+}
+.error{
+    color: darkred;
+}
+/*winkelwagen
+
+ */

@@ -28,82 +28,84 @@
 
 <body>
 <nav th:replace="~{menu::nav_menu(winkelwagen)}"></nav>
+<div class="section">
+    <div class="container">
+        <h1>Bestelling</h1>
+        <div class="bestellingslijst">
 
-<h1>Bestelling</h1>
-<div class="bestellingslijst">
 
+            <div class="bestellingslijst___titel">
+                <thead>
+                <tr>
+                    <th>Productnaam</th>
+                    <th>Prijs</th>
+                    <th>Aantal</th>
+                </tr>
+                </thead>
+            </div>
+            <div class="product">
+                <tbody th:each="dierenproduct:${toonWinkelwagen}">
+                <tr>
+                    <td th:text="*{dierenproduct.productNaam}"></td>
+                    <td th:text="*{dierenproduct.prijs}"></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </div>
 
-    <div class="bestellingslijst___titel">
-        <thead>
-        <tr>
-            <th>Productnaam</th>
-            <th>Prijs</th>
-            <th>Aantal</th>
-        </tr>
-        </thead>
+            </table>
+        </div>
+
+        <h2>Bestelformulier</h2>
+
+        <div class="formulier">
+            <form th:action="@{~/winkelwagen/klant}" method="post" th:object="${nKlant}">
+                <div class="formulier___titel">
+                    <label for="klantNaam">Naam</label>
+                </div>
+                <div class="formulier___inputveld">
+                    <input type="text" th:field="*{klantNaam}" id="klantNaam">
+                    <span th:if="${#fields.hasErrors('klantNaam')}" th:errors="*{klantNaam}" class="error"></span>
+                </div>
+
+                <div class="formulier___titel">
+                    <label>Email</label>
+                </div>
+                <div class="formulier___inputveld">
+                    <input type="text" th:field="*{email}" id="email">
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+                </div>
+
+                <div class="formulier___titel">
+                    <label>Adres</label>
+                </div>
+                <div class="formulier___inputveld">
+                    <input type="text" th:field="*{adres}" id="adres">
+                </div>
+                <span th:if="${#fields.hasErrors('adres')}" th:errors="*{adres}" class="error"></span>
+
+                <div class="formulier___titel">
+                    <label>Woonplaats</label>
+                </div>
+                <div class="formulier___inputveld">
+                    <input type="text" th:field="*{woonplaats}" id="woonplaats">
+                </div>
+                <span th:if="${#fields.hasErrors('woonplaats')}" th:errors="*{woonplaats}" class="error"></span>
+
+                <div class="formulier___titel">
+                    <label>Postcode</label>
+                </div>
+                <div class="formulier___inputveld">
+                    <input type="text" th:field="*{postcode}" id="postcode">
+                </div>
+                <span th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}" class="error"></span>
+
+                <input th:value="verzenden" type="submit">
+
+            </form>
+        </div>
     </div>
-    <div class="product">
-        <tbody th:each="dierenproduct:${toonWinkelwagen}">
-        <tr>
-            <td th:text="*{dierenproduct.productNaam}"></td>
-            <td th:text="*{dierenproduct.prijs}"></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </div>
-
-    </table>
 </div>
-
-<h2>Bestelformulier</h2>
-
-<div class="formulier">
-    <form th:action="@{~/winkelwagen/klant}" method="post" th:object="${nKlant}">
-        <div class="formulier___titel">
-            <label for="klantNaam">Naam</label>
-        </div>
-        <div class="formulier___inputveld">
-            <input type="text" th:field="*{klantNaam}" id="klantNaam">
-            <span th:if="${#fields.hasErrors('klantNaam')}" th:errors="*{klantNaam}" class="error"></span>
-        </div>
-
-        <div class="formulier___titel">
-            <label>Email</label>
-        </div>
-        <div class="formulier___inputveld">
-            <input type="text" th:field="*{email}" id="email">
-            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
-        </div>
-
-        <div class="formulier___titel">
-            <label>Adres</label>
-        </div>
-        <div class="formulier___inputveld">
-            <input type="text" th:field="*{adres}" id="adres">
-        </div>
-        <span th:if="${#fields.hasErrors('adres')}" th:errors="*{adres}" class="error"></span>
-
-        <div class="formulier___titel">
-            <label>Woonplaats</label>
-        </div>
-        <div class="formulier___inputveld">
-            <input type="text" th:field="*{woonplaats}" id="woonplaats">
-        </div>
-        <span th:if="${#fields.hasErrors('woonplaats')}" th:errors="*{woonplaats}" class="error"></span>
-
-        <div class="formulier___titel">
-            <label>Postcode</label>
-        </div>
-        <div class="formulier___inputveld">
-            <input type="text" th:field="*{postcode}" id="postcode">
-        </div>
-        <span th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}" class="error"></span>
-
-        <input th:value="verzenden" type="submit">
-
-    </form>
-</div>
-
 
 </body>
 </html>
