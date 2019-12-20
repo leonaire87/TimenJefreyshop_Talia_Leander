@@ -18,19 +18,17 @@ public class IndexController {
     @Autowired
     DierenproductDAO dao;
 
-
+    //om alle producten te vinden
     @ModelAttribute(value = "all")
     public Iterable<Dierenproduct> findAll() {
         return dao.findAll();
     }
 
-
+    //link naar indexpagina, about,orderbevestiging, winkelwagen
     @RequestMapping(value = {"", "/", "/index"}, method = RequestMethod.GET)
     public String showIndex(ModelMap map) {
         return "index";
     }
-
-    //link naar pagina about,orderbevestiging, winkelwagen
 
     @RequestMapping(value = {"/about"}, method = RequestMethod.GET)
     public String showAbout(ModelMap map) {
@@ -50,15 +48,5 @@ public class IndexController {
         map.addAttribute("all",dao.findByDierenSoort(dierenSoort));
         return "index";
     }
-
-
-    //@RequestMapping(value = { "/index/{id}"} ,method = RequestMethod.GET)
-    //public String findById (ModelMap map, @PathVariable("id") int id){
-    //    map.addAttribute("winkelwagen",dao.findById(id).get());
-    //    return "winkelwagen";
-  //  }
-
-
-
 }
 

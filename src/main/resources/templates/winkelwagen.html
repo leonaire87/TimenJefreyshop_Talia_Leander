@@ -1,80 +1,109 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{~/main.css}">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <title>Tim&Jefrey - Winkelwagen</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!--jqueries op datatables.net -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-
+    <link rel="stylesheet" th:href="@{~/CSS/styles.css}">
     <!--scriptjes (site bootstrap)-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
     <!-- ook terug te vinden op datatables.net-->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-</head>>
+</head>
 
 <body>
 <nav th:replace="~{menu::nav_menu(winkelwagen)}"></nav>
 
-<h2>Bestelling</h2>
-<table>
-    <thead>
-    <div>
+<h1>Bestelling</h1>
+<div class="bestellingslijst">
+
+
+    <div class="bestellingslijst___titel">
+        <thead>
         <tr>
             <th>Productnaam</th>
             <th>Prijs</th>
             <th>Aantal</th>
-
         </tr>
+        </thead>
+    </div>
+    <div class="product">
         <tbody th:each="dierenproduct:${toonWinkelwagen}">
-            <tr>
-                <td th:text="*{dierenproduct.productNaam}"></td>
-                <td th:text="*{dierenproduct.prijs}"></td>
-                <td></td>
-            </tr>
-</tbody>
-    </thead>
-</table>
+        <tr>
+            <td th:text="*{dierenproduct.productNaam}"></td>
+            <td th:text="*{dierenproduct.prijs}"></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </div>
+
+    </table>
+</div>
 
 <h2>Bestelformulier</h2>
 
-<div>
-   <form th:action="@{~/winkelwagen/klant}" method="post" th:object="${nKlant}">
-        <label for="klantNaam" >Naam</label>
-        <input type="text" th:field="*{klantNaam}" id="klantNaam">
-        <span th:if="${#fields.hasErrors('klantNaam')}" th:errors="*{klantNaam}" class="error"></span>
+<div class="formulier">
+    <form th:action="@{~/winkelwagen/klant}" method="post" th:object="${nKlant}">
+        <div class="formulier___titel">
+            <label for="klantNaam">Naam</label>
+        </div>
+        <div class="formulier___inputveld">
+            <input type="text" th:field="*{klantNaam}" id="klantNaam">
+            <span th:if="${#fields.hasErrors('klantNaam')}" th:errors="*{klantNaam}" class="error"></span>
+        </div>
 
+        <div class="formulier___titel">
+            <label>Email</label>
+        </div>
+        <div class="formulier___inputveld">
+            <input type="text" th:field="*{email}" id="email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+        </div>
 
-        <label >Email</label>
-        <input type="text" th:field="*{email}" id="email">
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
-
-
-        <label >Adres</label>
-        <input type="text" th:field="*{adres}" id="adres">
+        <div class="formulier___titel">
+            <label>Adres</label>
+        </div>
+        <div class="formulier___inputveld">
+            <input type="text" th:field="*{adres}" id="adres">
+        </div>
         <span th:if="${#fields.hasErrors('adres')}" th:errors="*{adres}" class="error"></span>
 
-
-        <label >Woonplaats</label>
-        <input type="text" th:field="*{woonplaats}" id="woonplaats">
+        <div class="formulier___titel">
+            <label>Woonplaats</label>
+        </div>
+        <div class="formulier___inputveld">
+            <input type="text" th:field="*{woonplaats}" id="woonplaats">
+        </div>
         <span th:if="${#fields.hasErrors('woonplaats')}" th:errors="*{woonplaats}" class="error"></span>
 
-
-        <label >Postcode</label>
-        <input type="text" th:field="*{postcode}" id="postcode">
+        <div class="formulier___titel">
+            <label>Postcode</label>
+        </div>
+        <div class="formulier___inputveld">
+            <input type="text" th:field="*{postcode}" id="postcode">
+        </div>
         <span th:if="${#fields.hasErrors('postcode')}" th:errors="*{postcode}" class="error"></span>
-
 
         <input th:value="verzenden" type="submit">
 
     </form>
 </div>
+
 
 </body>
 </html>

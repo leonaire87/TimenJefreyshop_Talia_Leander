@@ -22,50 +22,54 @@ public class WinkelwagenController {
     KlantDAO daoklant;
 
 
-    // modelattribute voor een nieuwe klant
-    @ModelAttribute(value ="nKlant")
-    public Klant klantToSave(){
-        return new Klant();
-    }
-
-    static ArrayList<Dierenproduct> cart = new ArrayList<Dierenproduct>();
-
-
     @GetMapping(value = "/winkelwagen")
     public String showWinkelwagen(ModelMap map){
         return "winkelwagen";
     }
 
-    @ModelAttribute(value = "toonWinkelwagen")
-    public ArrayList<Dierenproduct> toonWinkelwagen() {
-        return cart;
-    }
+
+    //alle code voor onderdeel klant
+
+        // modelattribute voor een nieuwe klant
+        @ModelAttribute(value ="nKlant")
+        public Klant klantToSave(){
+            return new Klant();
+        }
+
+        //om ordergegevens van persoon te kunnen verwerken
+
+        @RequestMapping(value = "/winkelwagen/klant", method = RequestMethod.POST)
+        public String saveKlant(ModelMap map, @ModelAttribute("nKlant")@Valid Klant nKlant, BindingResult bindingResult) {
+            if (bindingResult.hasErrors())
+                return "winkelwagen";
+            daoklant.save(nKlant);
+            return "redirect:/orderbevestiging";
+        }
 
 
-    //om ordergegevens van persoon te kunnen verwerken
-
-    @RequestMapping(value = "/winkelwagen/klant", method = RequestMethod.POST)
-    public String saveKlant(ModelMap map, @ModelAttribute("nKlant")@Valid Klant nKlant, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "winkelwagen";
-        daoklant.save(nKlant);
-        return "redirect:/orderbevestiging";
-    }
 
 
-    @GetMapping("/winkelwagen/add/{id}")
-    public String addProduct(@PathVariable("id") int id){
-        WinkelwagenController.cart.add(dao.findById(id).get());
-        return "redirect:/index";
-    }
+    //alle code voor onderdeel cart
 
-    @GetMapping(value="/winkelwagen/wis")
-    public String clearCart(){
-        cart.clear();
-        return "redirect:/orderbevestiging";
-    }
-//    @ModelAttribute(value ="nWinkelwagen")
-//    public Winkelwagen winkelwagenToSave(){
-//        return new Winkelwagen();
-//    }
+        //list aangemaakt
+        static ArrayList<Dierenproduct> cart = new ArrayList<Dierenproduct>();
+
+        //geeft winkelwagen weer
+        @ModelAttribute(value = "toonWinkelwagen")
+        public ArrayList<Dierenproduct> toonWinkelwagen() {
+            return cart;
+        }
+
+        //om een product toe te voegen aan cart
+        @GetMapping("/winkelwagen/add/{id}")
+        public String addProduct(@PathVariable("id") int id){
+            WinkelwagenController.cart.add(dao.findById(id).get());
+            return "redirect:/index";
+        }
+        //om de winkelwagen te legen
+        @GetMapping(value="/winkelwagen/wis")
+        public String clearCart(){
+            cart.clear();
+            return "redirect:/orderbevestiging";
+        }
 }
